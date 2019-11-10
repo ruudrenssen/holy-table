@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Holy table</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+<body>
+    <div class="table-container">
+        <table>
+            <colgroup>
+                <col>
+            </colgroup>
+            <colgroup>
+                <col>
+            </colgroup>
+            <colgroup>
+                <col>
+                <col>
+            </colgroup>
+            <colgroup>
+                <col>
+                <col span="3">
+            </colgroup>            
+            <thead>
+                <tr data-row="1">
+                    <th></th>
+                    <th scope="col">A</th>
+                    <th scope="col" colspan="2">B</th>
+                    <th scope="col" colspan="4">C</th>
+                </tr>
+                <tr data-row="2">
+                    <th></th>
+                    <th scope="col">A.1</th>
+                    <th scope="col">B.1</th>
+                    <th scope="col">B.2</th>
+                    <th scope="col">C.1</th>
+                    <th scope="col" colspan="3">C.2</th>
+                </tr>
+                <tr data-row="3">
+                    <th></th>
+                    <th scope="col">A.1</th>
+                    <th scope="col">B.1</th>
+                    <th scope="col">B.2</th>
+                    <th scope="col">C.1</th>
+                    <th scope="col">C.2</th>
+                    <th scope="col" colspan="2">C.3</th>
+                </tr>
+                <tr data-row="4">
+                    <th></th>
+                    <th scope="col">A.1</th>
+                    <th scope="col">B.1</th>
+                    <th scope="col">B.2</th>
+                    <th scope="col">C.1</th>
+                    <th scope="col">C.2</th>
+                    <th scope="col">C.3</th>
+                    <th scope="col">C.4</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th scope="row"></th>
+                    <td>text value</td>
+                    <td></td>
+                    <td>1.299.994</td>
+                    <td>0,15483</td>
+                    <td></td>
+                    <td>+ 2.76</td>
+                    <td>A B C</td>
+                </tr>
+            </tfoot>
+            <tbody id="table-body">
+                <tr id="table-row">
+                    <th scope="row">Row title</th>
+                    <td>text value</td>
+                    <td>0</td>
+                    <td></td>
+                    <td>C1.1</td>
+                    <td>C2.1</td>
+                    <td>C3.1</td>
+                    <td>C4.1</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const row = document.getElementById('table-row');
+        const body = document.getElementById('table-body');
+        for(let i = 2; i < 50; i++) {
+            let newRow = row.cloneNode(true);
+            newRow.childNodes[3].textContent = 'text value';
+            newRow.childNodes[5].textContent = `${i}`;
+            newRow.childNodes[7].textContent = Math.random() * 10000000;
+            newRow.childNodes[9].textContent = `C1.${i}`;
+            newRow.childNodes[11].textContent = `C2.${i}`;
+            newRow.childNodes[13].textContent = `C3.${i}`;
+            body.appendChild(newRow);
+        }
+    </script>
+</body>
+</html>
