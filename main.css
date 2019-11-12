@@ -2,10 +2,11 @@
     --border-spacing: 4px;
     --line-height: 1.5;
     --font-size: 1rem;
-    --space-color: rgba(0, 125, 255, .25);
+    --space-color: rgba(255, 0, 0, .5);
     --cell-height: calc(var(--line-height) * var(--font-size) + var(--border-spacing));
 }
 
+/* Default table styling */
 html, body {
     margin: 0;
     padding: 0;
@@ -21,35 +22,34 @@ body {
 
 table {
     position: relative;
-    width: 100%;
     border-spacing: var(--border-spacing);
     background-color: var(--space-color);
+    width: 100%;
 }
 
-thead {
-    position: relative;
+colgroup:nth-child(even) col {
+    background-color: #eee;
 }
 
-th, td {
-    background-color: white;
+th,
+td {
+    /* background-color: white; */
     line-height: var(--line-height);
     padding-top: 0;
     padding-bottom: 0;
     outline: var(--border-spacing) solid var(--space-color);
 }
 
+/* Sticky headers */
+tfoot tr th,
+tfoot tr td,
 thead tr th {
     position: sticky;
     white-space: nowrap;
-
-    background-color: #000;
-    color: #fff;
 }
 
 tfoot tr th,
 tfoot tr td {
-    position: sticky;
-    white-space: nowrap;
     bottom: var(--border-spacing);
 }
 
@@ -69,11 +69,13 @@ thead tr:nth-child(4) th {
     top: calc(3 * var(--cell-height) + var(--border-spacing));
 }
 
-body tr:target th,
-body tr:target td {
+/* Highlight targeted row */
+tbody tr:target th,
+tbody tr:target td {
     background-color: yellow;
 }
 
+/* Overflow container */
 .table-container {
     position: relative;
     grid-row: 2 / 3;
@@ -81,8 +83,8 @@ body tr:target td {
 
     overflow: auto;
 
-    background-color: black;
+    background-color: #00f;
 
-    scroll-snap-type: both proximity;
-    scroll-padding-top: calc(4 * var(--cell-height) + var(--border-spacing));
+    /* Add padding so the thead does not overlap the first rows when scrolled */
+    scroll-padding: 50%;
 }
