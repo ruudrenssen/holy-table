@@ -1,8 +1,9 @@
 :root {
-    --border-spacing: 1px;
+    --border-spacing: 4px;
     --line-height: 1.5;
     --font-size: 1rem;
     --space-color: rgba(0, 125, 255, .25);
+    --cell-height: calc(var(--line-height) * var(--font-size) + var(--border-spacing));
 }
 
 html, body {
@@ -21,9 +22,8 @@ body {
 table {
     position: relative;
     width: 100%;
-    border-spacing: 0;
+    border-spacing: var(--border-spacing);
     background-color: var(--space-color);
-    --cell-height: calc(var(--line-height) * var(--font-size) + var(--border-spacing));
 }
 
 thead {
@@ -35,37 +35,43 @@ th, td {
     line-height: var(--line-height);
     padding-top: 0;
     padding-bottom: 0;
-    border: calc(var(--border-spacing) / 2) solid var(--space-color)
+    outline: var(--border-spacing) solid var(--space-color);
 }
 
 thead tr th {
     position: sticky;
     white-space: nowrap;
-    /* outline: var(--border-spacing) solid var(--space-color); */
+
+    background-color: #000;
+    color: #fff;
 }
 
 tfoot tr th,
 tfoot tr td {
     position: sticky;
     white-space: nowrap;
-    bottom: 0;
-    /* outline: var(--border-spacing) solid var(--space-color); */
+    bottom: var(--border-spacing);
 }
 
 thead tr:nth-child(1) th {
-    top: calc(0 * var(--cell-height));
+    top: calc(0 * var(--cell-height) + var(--border-spacing));
 }
 
 thead tr:nth-child(2) th {
-    top: calc(1 * var(--cell-height));
+    top: calc(1 * var(--cell-height) + var(--border-spacing));
 }
 
 thead tr:nth-child(3) th {
-    top: calc(2 * var(--cell-height));
+    top: calc(2 * var(--cell-height) + var(--border-spacing));
 }
 
 thead tr:nth-child(4) th {
-    top: calc(3 * var(--cell-height));
+    top: calc(3 * var(--cell-height) + var(--border-spacing));
+}
+
+body tr:target th,
+body tr:target td {
+    background-color: yellow;
 }
 
 .table-container {
@@ -76,4 +82,7 @@ thead tr:nth-child(4) th {
     overflow: auto;
 
     background-color: black;
+
+    scroll-snap-type: both proximity;
+    scroll-padding-top: calc(4 * var(--cell-height) + var(--border-spacing));
 }

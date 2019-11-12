@@ -23,7 +23,7 @@
             <colgroup>
                 <col>
                 <col span="3">
-            </colgroup>            
+            </colgroup>
             <thead>
                 <tr data-row="1">
                     <th></th>
@@ -72,7 +72,7 @@
                 </tr>
             </tfoot>
             <tbody id="table-body">
-                <tr id="table-row">
+                <tr id="table-row-1">
                     <th scope="row">Row title</th>
                     <td>text value</td>
                     <td>0</td>
@@ -86,10 +86,11 @@
         </table>
     </div>
     <script>
-        const row = document.getElementById('table-row');
+        const row = document.getElementById('table-row-1');
         const body = document.getElementById('table-body');
         for(let i = 2; i < 50; i++) {
             let newRow = row.cloneNode(true);
+            newRow.setAttribute('id', `table-row-${i}`)
             newRow.childNodes[3].textContent = 'text value';
             newRow.childNodes[5].textContent = `${i}`;
             newRow.childNodes[7].textContent = Math.random() * 10000000;
