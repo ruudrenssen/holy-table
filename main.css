@@ -46,6 +46,8 @@ tfoot tr td,
 thead tr th {
     position: sticky;
     white-space: nowrap;
+    background-color: black;
+    color: white;
 }
 
 tfoot tr th,
