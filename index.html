@@ -110,7 +110,7 @@
     */
         const row = document.getElementById('table-row-1');
         const body = document.getElementById('table-body');
-        for(let i = 2; i < 50; i++) {
+        for(let i = 2; i < 51; i++) {
             let newRow = row.cloneNode(true);
             newRow.setAttribute('id', `table-row-${i}`)
             newRow.childNodes[3].textContent = 'text value';
@@ -123,20 +123,14 @@
         }
 
         function highlightRow (e) {
-            console.log(e.target.value);
-            // window.location.href(`/#table-row-${e.target.value}`);
             window.location =`#table-row-${e.target.value}`;
         }
 
         function highlightColumnGroup (e) {
-            console.log(e.target.value);
-            // window.location.href(`/#table-row-${e.target.value}`);
             window.location =`#table-column-group-${e.target.value}`;
         }
 
         function highlightColumn (e) {
-            console.log(e.target.value);
-            // window.location.href(`/#table-row-${e.target.value}`);
             window.location =`#table-column-${e.target.value}`;
         }
     </script>
