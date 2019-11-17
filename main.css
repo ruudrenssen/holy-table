@@ -1,5 +1,5 @@
 :root {
-    /* variables */
+    /* variables (use units for calc!) */
     --cell-spacing: 0px;
     --border-width: 1px;
     --x-padding: 1rem;
@@ -9,10 +9,11 @@
     --table-font: monospace;
 
     --space-color: #ddd;
+    --border-color: #999;
     --table-background: #fff;
     --table-alt-background: #eee;
     --table-type-color: #222;
-    --hover-color: rgba(0, 255, 255, .2);
+    --hover-color: rgba(0, 255, 255, 1);
     --target-color: rgba(255, 255, 0, 1);
     
     /* calculated variables */
@@ -51,22 +52,9 @@ td {
     line-height: var(--line-height);
     padding: 0 var(--x-padding);
     outline: var(--cell-spacing) solid var(--space-color);
-    border-bottom: var(--border-width) solid var(--space-color);
+    border-bottom: var(--border-width) solid var(--border-color);
     margin-bottom: var(--border-width);
     margin-top: calc(var(--border-width) * -1);
-}
-
-th:hover:not(:first-child)::after,
-td:hover:not(:first-child)::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -100vh;
-    bottom: -100vh;
-    z-index: 2;
-    background-color: var(--hover-color);
-    pointer-events: none;
 }
 
 tfoot td,
@@ -89,38 +77,39 @@ tfoot tr th,
 tfoot tr td {
     border-top: var(--border-width) solid var(--space-color);
     border-bottom: none;
-    bottom: 0;
+    bottom: calc(var(--cell-spacing));
+}
+
+/* sticky first columns */
+tbody tr th:first-child,
+thead tr th:first-child,
+tfoot tr th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 3;
+    left: 0;
+}
+
+thead tr th:first-child,
+tfoot tr th:first-child {
+    z-index: 4;
 }
 
 /* Sticky row positions */
 thead tr:nth-child(1) th {
-    top: calc(0 * var(--cell-height) + 0 * var(--border-width));
+    top: calc(0 * var(--cell-height) + var(--cell-spacing) + 0 * var(--border-width));
 }
 
 thead tr:nth-child(2) th {
-    top: calc(1 * var(--cell-height) + 1 * var(--border-width));
+    top: calc(1 * var(--cell-height) + var(--cell-spacing) + 1 * var(--border-width));
 }
 
 thead tr:nth-child(3) th {
-    top: calc(2 * var(--cell-height) + 2 * var(--border-width));
+    top: calc(2 * var(--cell-height) + var(--cell-spacing) + 2 * var(--border-width));
 }
 
 thead tr:nth-child(4) th {
-    top: calc(3 * var(--cell-height) + 3 * var(--border-width));
-}
-
-/* sticky first columns */
-tbody tr th:first-child {
-    position: sticky;
-    left: 0;
-    z-index: 1;
-}
-
-/* Sticky top-left cell */
-thead tr th:first-child,
-tfoot tr th:first-child {
-    z-index: 2;
-    left: 0;
+    top: calc(3 * var(--cell-height) + var(--cell-spacing) + 3 * var(--border-width));
 }
 
 /* Highlight target */
@@ -131,6 +120,20 @@ tbody tr:target th
 }
 
 /* Highlights on hover */
+table tbody th:hover:not(:first-child)::after,
+table tbody td:hover:not(:first-child)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -100vh;
+    bottom: -100vh;
+    z-index: 2;
+    background-color: var(--hover-color);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+}
+
 table tbody tr:hover th, 
 table tbody tr:hover td {
     background-color: var(--hover-color);
