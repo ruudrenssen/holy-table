@@ -1,12 +1,18 @@
 :root {
-    --border-spacing: 1px;
+    /* variables */
+    --border-spacing: 6px;
+    --x-padding: .5rem;
+
     --line-height: 1.6;
     --font-size: 1rem;
-    --space-color: rgba(255, 0, 0, .5);
-    --cell-height: calc(var(--line-height) * var(--font-size) + var(--border-spacing));
-    --uneven-col-background: #eee;
-    --even-col-background: #bbb;
     --table-font: monospace;
+
+    --space-color: rgba(255, 0, 0, .5);
+    --table-head-background: #eee;
+    --table-type-color: #222;
+    
+    /* calculated variables */
+    --cell-height: calc(var(--line-height) * var(--font-size) + var(--border-spacing));
 }
 
 * {
@@ -23,8 +29,7 @@ html, body {
 
 body {
     display: grid;
-    grid-template-rows: 5vh auto 5vh;
-    grid-template-columns: 15vw auto 15vw;
+    grid-template-columns: max-content auto;
 }
 
 table {
@@ -36,22 +41,17 @@ table {
     width: 100%;
 }
 
-.colgroup-even,
-colgroup:nth-child(even) col {
-    background-color: var(--even-col-background);
-}
-
-.colgroup-uneven,
-tbody tr th:first-child {
-    background-color: var(--uneven-col-background);
-}
-
 th,
 td {
     /* background-color: white; */
     line-height: var(--line-height);
-    padding: 0;
+    padding: 0 var(--x-padding);
     outline: var(--border-spacing) solid var(--space-color);
+}
+
+th {
+    color: var(--table-type-color);
+    background-color: var(--table-head-background);
 }
 
 /* Sticky header and footer */
@@ -93,15 +93,14 @@ tbody tr th:first-child {
 }
 
 /* Sticky top-left cell */
-tfoot tr th:first-child,
-thead tr .first-cell {
+thead tr th:first-child,
+tfoot tr th:first-child {
     z-index: 2;
     left: 0;
 }
 
 /* Highlight targeted row */
-tbody tr:target th,
-tbody tr:target td {
+table *:target {
     background-color: yellow;
     color: black;
 }
@@ -109,13 +108,11 @@ tbody tr:target td {
 /* Overflow container */
 .table-container {
     position: relative;
-    grid-row: 2 / 3;
-    grid-column: 2 / 3;
 
     overflow: auto;
 
     background-color: #6cf;
-
+    
     /* Add padding so the thead does not overlap the first rows when scrolled */
     scroll-padding: 50%;
 }

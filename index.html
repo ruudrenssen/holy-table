@@ -9,69 +9,84 @@
 </head>
 <body>
     <form class="controls">
-        <label>
-            Highlight row:
-            <input type="number" onchange="return highlightRow(event)">
-        </label>
+        <fieldset>
+            <label>Highlight row: <input type="number" onchange="return highlightRow(event)"></label>
+        </fieldset>
+        <fieldset>
+            <label>Highlight column group: <input type="number" onchange="return highlightColumnGroup(event)">
+        </fieldset>
+        <fieldset>
+            <label>Highlight column: <input type="number" onchange="return highlightColumn(event)">
+        </fieldset>
+        <fieldset>
+            Highlight cell:
+            <label>Row<input type="number"></label>
+            <label>Column:<input type="number"></label>
+        </fieldset>
     </form>
     <div class="table-container">
         <table>
-            <colgroup>
-                <col>
+            <colgroup id="table-column-group-0">
+                <col id="table-column-0">
             </colgroup>
-            <colgroup>
-                <col>
+            <colgroup id="table-column-group-1">
+                <col id="table-column-1">
             </colgroup>
-            <colgroup>
-                <col>
-                <col>
+            <colgroup id="table-column-group-2">
+                <col id="table-column-2">
+                <col id="table-column-3">
             </colgroup>
-            <colgroup>
-                <col>
-                <col span="3">
+            <colgroup id="table-column-group-3">
+                <col id="table-column-4">
+                <col id="table-column-5">
+                <col id="table-column-6">
+                <col id="table-column-7">
             </colgroup>
             <thead>
-                <tr data-row="1">
-                    <th class="colgroup-uneven first-cell" rowspan="4"></th>
-                    <th scope="col" class="colgroup-even">A</th>
-                    <th scope="col" colspan="2" class="colgroup-uneven">B</th>
-                    <th scope="col" colspan="4" class="colgroup-even">C</th>
+                <tr>
+                    <th></th>
+                    <th scope="col">A</th>
+                    <th scope="col" colspan="2">B</th>
+                    <th scope="col" colspan="4">C</th>
                 </tr>
-                <tr data-row="2">
-                    <th scope="col" class="colgroup-even">A.1</th>
-                    <th scope="col" class="colgroup-uneven">B.1</th>
-                    <th scope="col" class="colgroup-uneven">B.2</th>
-                    <th scope="col" class="colgroup-even">C.1</th>
-                    <th scope="col" colspan="3" class="colgroup-even">C.2</th>
+                <tr>
+                    <th></th>
+                    <th scope="col">A.1</th>
+                    <th scope="col">B.1</th>
+                    <th scope="col">B.2</th>
+                    <th scope="col">C.1</th>
+                    <th scope="col" colspan="3">C.2</th>
                 </tr>
-                <tr data-row="3">
-                    <th scope="col" class="colgroup-even">A.1</th>
-                    <th scope="col" class="colgroup-uneven">B.1</th>
-                    <th scope="col" class="colgroup-uneven">B.2</th>
-                    <th scope="col" class="colgroup-even">C.1</th>
-                    <th scope="col" class="colgroup-even">C.2</th>
-                    <th scope="col" colspan="2" class="colgroup-even">C.3</th>
+                <tr>
+                    <th></th>
+                    <th scope="col">A.1</th>
+                    <th scope="col">B.1</th>
+                    <th scope="col">B.2</th>
+                    <th scope="col">C.1</th>
+                    <th scope="col">C.2</th>
+                    <th scope="col" colspan="2">C.3</th>
                 </tr>
-                <tr data-row="4">
-                    <th scope="col" class="colgroup-even">A.1</th>
-                    <th scope="col" class="colgroup-uneven">B.1</th>
-                    <th scope="col" class="colgroup-uneven">B.2</th>
-                    <th scope="col" class="colgroup-even">C.1</th>
-                    <th scope="col" class="colgroup-even">C.2</th>
-                    <th scope="col" class="colgroup-even">C.3</th>
-                    <th scope="col" class="colgroup-even">C.4</th>
+                <tr>
+                    <th></th>
+                    <th scope="col">A.1</th>
+                    <th scope="col">B.1</th>
+                    <th scope="col">B.2</th>
+                    <th scope="col">C.1</th>
+                    <th scope="col">C.2</th>
+                    <th scope="col">C.3</th>
+                    <th scope="col">C.4</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th scope="row" class="colgroup-uneven">Total</th>
-                    <td class="colgroup-even">text value</td>
-                    <td class="colgroup-uneven"></td>
-                    <td class="colgroup-uneven">1.299.994</td>
-                    <td class="colgroup-even">0,15483</td>
-                    <td class="colgroup-even"></td>
-                    <td class="colgroup-even">+ 2.76</td>
-                    <td class="colgroup-even">A B C</td>
+                    <th scope="row">Total</th>
+                    <td>text value</td>
+                    <td></td>
+                    <td>1.299.994</td>
+                    <td>0,15483</td>
+                    <td></td>
+                    <td>+ 2.76</td>
+                    <td>A B C</td>
                 </tr>
             </tfoot>
             <tbody id="table-body">
@@ -116,6 +131,18 @@
             console.log(e.target.value);
             // window.location.href(`/#table-row-${e.target.value}`);
             window.location =`#table-row-${e.target.value}`;
+        }
+
+        function highlightColumnGroup (e) {
+            console.log(e.target.value);
+            // window.location.href(`/#table-row-${e.target.value}`);
+            window.location =`#table-column-group-${e.target.value}`;
+        }
+
+        function highlightColumn (e) {
+            console.log(e.target.value);
+            // window.location.href(`/#table-row-${e.target.value}`);
+            window.location =`#table-column-${e.target.value}`;
         }
     </script>
 </body>
