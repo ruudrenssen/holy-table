@@ -1,9 +1,16 @@
 :root {
-    --border-spacing: 4px;
-    --line-height: 1.5;
+    --border-spacing: 1px;
+    --line-height: 1.6;
     --font-size: 1rem;
     --space-color: rgba(255, 0, 0, .5);
     --cell-height: calc(var(--line-height) * var(--font-size) + var(--border-spacing));
+    --uneven-col-background: #eee;
+    --even-col-background: #bbb;
+    --table-font: monospace;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 /* Default table styling */
@@ -16,38 +23,45 @@ html, body {
 
 body {
     display: grid;
-    grid-template-rows: 5vh 1fr 5vh;
-    grid-template-columns: 15vw 1fr 15vw;
+    grid-template-rows: 5vh auto 5vh;
+    grid-template-columns: 15vw auto 15vw;
 }
 
 table {
     position: relative;
     border-spacing: var(--border-spacing);
-    background-color: var(--space-color);
+    background-color: var(--uneven-col-background);
+    font-family: var(--table-font);
+    font-size: var(--font-size);
     width: 100%;
 }
 
+.colgroup-even,
 colgroup:nth-child(even) col {
-    background-color: #eee;
+    background-color: var(--even-col-background);
+}
+
+.colgroup-uneven,
+tbody tr th:first-child {
+    background-color: var(--uneven-col-background);
 }
 
 th,
 td {
     /* background-color: white; */
     line-height: var(--line-height);
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0;
     outline: var(--border-spacing) solid var(--space-color);
 }
 
-/* Sticky headers */
+/* Sticky header and footer */
 tfoot tr th,
 tfoot tr td,
-thead tr th {
+thead tr th,
+tbody tr th {
     position: sticky;
+    z-index: 1;
     white-space: nowrap;
-    background-color: black;
-    color: white;
 }
 
 tfoot tr th,
@@ -55,6 +69,7 @@ tfoot tr td {
     bottom: var(--border-spacing);
 }
 
+/* Sticky row positions */
 thead tr:nth-child(1) th {
     top: calc(0 * var(--cell-height) + var(--border-spacing));
 }
@@ -71,10 +86,24 @@ thead tr:nth-child(4) th {
     top: calc(3 * var(--cell-height) + var(--border-spacing));
 }
 
+/* sticky first columns */
+tbody tr th:first-child {
+    position: sticky;
+    left: 0;
+}
+
+/* Sticky top-left cell */
+tfoot tr th:first-child,
+thead tr .first-cell {
+    z-index: 2;
+    left: 0;
+}
+
 /* Highlight targeted row */
 tbody tr:target th,
 tbody tr:target td {
     background-color: yellow;
+    color: black;
 }
 
 /* Overflow container */
@@ -85,7 +114,7 @@ tbody tr:target td {
 
     overflow: auto;
 
-    background-color: #00f;
+    background-color: #6cf;
 
     /* Add padding so the thead does not overlap the first rows when scrolled */
     scroll-padding: 50%;

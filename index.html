@@ -8,6 +8,12 @@
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
 </head>
 <body>
+    <form class="controls">
+        <label>
+            Highlight row:
+            <input type="number" onchange="return highlightRow(event)">
+        </label>
+    </form>
     <div class="table-container">
         <table>
             <colgroup>
@@ -26,56 +32,53 @@
             </colgroup>
             <thead>
                 <tr data-row="1">
-                    <th></th>
-                    <th scope="col">A</th>
-                    <th scope="col" colspan="2">B</th>
-                    <th scope="col" colspan="4">C</th>
+                    <th class="colgroup-uneven first-cell" rowspan="4"></th>
+                    <th scope="col" class="colgroup-even">A</th>
+                    <th scope="col" colspan="2" class="colgroup-uneven">B</th>
+                    <th scope="col" colspan="4" class="colgroup-even">C</th>
                 </tr>
                 <tr data-row="2">
-                    <th></th>
-                    <th scope="col">A.1</th>
-                    <th scope="col">B.1</th>
-                    <th scope="col">B.2</th>
-                    <th scope="col">C.1</th>
-                    <th scope="col" colspan="3">C.2</th>
+                    <th scope="col" class="colgroup-even">A.1</th>
+                    <th scope="col" class="colgroup-uneven">B.1</th>
+                    <th scope="col" class="colgroup-uneven">B.2</th>
+                    <th scope="col" class="colgroup-even">C.1</th>
+                    <th scope="col" colspan="3" class="colgroup-even">C.2</th>
                 </tr>
                 <tr data-row="3">
-                    <th></th>
-                    <th scope="col">A.1</th>
-                    <th scope="col">B.1</th>
-                    <th scope="col">B.2</th>
-                    <th scope="col">C.1</th>
-                    <th scope="col">C.2</th>
-                    <th scope="col" colspan="2">C.3</th>
+                    <th scope="col" class="colgroup-even">A.1</th>
+                    <th scope="col" class="colgroup-uneven">B.1</th>
+                    <th scope="col" class="colgroup-uneven">B.2</th>
+                    <th scope="col" class="colgroup-even">C.1</th>
+                    <th scope="col" class="colgroup-even">C.2</th>
+                    <th scope="col" colspan="2" class="colgroup-even">C.3</th>
                 </tr>
                 <tr data-row="4">
-                    <th></th>
-                    <th scope="col">A.1</th>
-                    <th scope="col">B.1</th>
-                    <th scope="col">B.2</th>
-                    <th scope="col">C.1</th>
-                    <th scope="col">C.2</th>
-                    <th scope="col">C.3</th>
-                    <th scope="col">C.4</th>
+                    <th scope="col" class="colgroup-even">A.1</th>
+                    <th scope="col" class="colgroup-uneven">B.1</th>
+                    <th scope="col" class="colgroup-uneven">B.2</th>
+                    <th scope="col" class="colgroup-even">C.1</th>
+                    <th scope="col" class="colgroup-even">C.2</th>
+                    <th scope="col" class="colgroup-even">C.3</th>
+                    <th scope="col" class="colgroup-even">C.4</th>
                 </tr>
             </thead>
             <tfoot>
                 <tr>
-                    <th scope="row">Total</th>
-                    <td>text value</td>
-                    <td></td>
-                    <td>1.299.994</td>
-                    <td>0,15483</td>
-                    <td></td>
-                    <td>+ 2.76</td>
-                    <td>A B C</td>
+                    <th scope="row" class="colgroup-uneven">Total</th>
+                    <td class="colgroup-even">text value</td>
+                    <td class="colgroup-uneven"></td>
+                    <td class="colgroup-uneven">1.299.994</td>
+                    <td class="colgroup-even">0,15483</td>
+                    <td class="colgroup-even"></td>
+                    <td class="colgroup-even">+ 2.76</td>
+                    <td class="colgroup-even">A B C</td>
                 </tr>
             </tfoot>
             <tbody id="table-body">
                 <tr id="table-row-1">
                     <th scope="row">Row title</th>
                     <td>text value</td>
-                    <td>0</td>
+                    <td>1</td>
                     <td></td>
                     <td>C1.1</td>
                     <td>C2.1</td>
@@ -85,7 +88,16 @@
             </tbody>
         </table>
     </div>
-    <script>
+    <!-- <div>
+        <h2>To do</h2>
+        <ul>
+            <li>mobile view: first column sticky top left</li>
+            <li>column highlight</li>
+            <li>cell highlight</li>
+            <li>full screen</li>
+        </ul>
+    </div> -->
+    <script type="text/javascript">
         const row = document.getElementById('table-row-1');
         const body = document.getElementById('table-body');
         for(let i = 2; i < 50; i++) {
@@ -98,6 +110,12 @@
             newRow.childNodes[11].textContent = `C2.${i}`;
             newRow.childNodes[13].textContent = `C3.${i}`;
             body.appendChild(newRow);
+        }
+
+        function highlightRow (e) {
+            console.log(e.target.value);
+            // window.location.href(`/#table-row-${e.target.value}`);
+            window.location =`#table-row-${e.target.value}`;
         }
     </script>
 </body>
