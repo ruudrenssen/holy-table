@@ -64,7 +64,7 @@ td:hover:not(:first-child)::after {
     right: 0;
     top: -100vh;
     bottom: -100vh;
-    z-index: -1;
+    z-index: 2;
     background-color: var(--hover-color);
     pointer-events: none;
 }
