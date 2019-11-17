@@ -1,18 +1,20 @@
 :root {
     /* variables */
-    --border-spacing: 6px;
-    --x-padding: .5rem;
+    --cell-spacing: 0px;
+    --border-width: 1px;
+    --x-padding: 1rem;
 
     --line-height: 1.6;
     --font-size: 1rem;
     --table-font: monospace;
 
-    --space-color: rgba(255, 0, 0, .5);
-    --table-head-background: #eee;
+    --space-color: #ddd;
+    --table-background: #fff;
+    --table-alt-background: #eee;
     --table-type-color: #222;
     
     /* calculated variables */
-    --cell-height: calc(var(--line-height) * var(--font-size) + var(--border-spacing));
+    --cell-height: calc(var(--line-height) * var(--font-size) + var(--cell-spacing));
 }
 
 * {
@@ -34,8 +36,7 @@ body {
 
 table {
     position: relative;
-    border-spacing: var(--border-spacing);
-    background-color: var(--uneven-col-background);
+    border-spacing: var(--cell-spacing);
     font-family: var(--table-font);
     font-size: var(--font-size);
     width: 100%;
@@ -46,12 +47,16 @@ td {
     /* background-color: white; */
     line-height: var(--line-height);
     padding: 0 var(--x-padding);
-    outline: var(--border-spacing) solid var(--space-color);
+    outline: var(--cell-spacing) solid var(--space-color);
+    border-bottom: var(--border-width) solid var(--space-color);
+    margin-bottom: var(--border-width);
+    margin-top: calc(var(--border-width) * -1);
 }
 
+tfoot td,
 th {
     color: var(--table-type-color);
-    background-color: var(--table-head-background);
+    background-color: var(--table-background);
 }
 
 /* Sticky header and footer */
@@ -66,24 +71,26 @@ tbody tr th {
 
 tfoot tr th,
 tfoot tr td {
-    bottom: var(--border-spacing);
+    border-top: var(--border-width) solid var(--space-color);
+    border-bottom: none;
+    bottom: 0;
 }
 
 /* Sticky row positions */
 thead tr:nth-child(1) th {
-    top: calc(0 * var(--cell-height) + var(--border-spacing));
+    top: calc(0 * var(--cell-height) + 0 * var(--border-width));
 }
 
 thead tr:nth-child(2) th {
-    top: calc(1 * var(--cell-height) + var(--border-spacing));
+    top: calc(1 * var(--cell-height) + 1 * var(--border-width));
 }
 
 thead tr:nth-child(3) th {
-    top: calc(2 * var(--cell-height) + var(--border-spacing));
+    top: calc(2 * var(--cell-height) + 2 * var(--border-width));
 }
 
 thead tr:nth-child(4) th {
-    top: calc(3 * var(--cell-height) + var(--border-spacing));
+    top: calc(3 * var(--cell-height) + 3 * var(--border-width));
 }
 
 /* sticky first columns */
@@ -99,19 +106,22 @@ tfoot tr th:first-child {
     left: 0;
 }
 
-/* Highlight targeted row */
-table *:target {
+/* Highlight target */
+table *:target,
+tbody tr:target th
+{
     background-color: yellow;
-    color: black;
+}
+
+/* Highlights on hover */
+table tbody tr:hover th, 
+table tbody tr:hover td {
+    background-color: cyan;
 }
 
 /* Overflow container */
 .table-container {
-    position: relative;
-
     overflow: auto;
-
-    background-color: #6cf;
     
     /* Add padding so the thead does not overlap the first rows when scrolled */
     scroll-padding: 50%;
