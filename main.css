@@ -1,6 +1,6 @@
 :root {
     /* variables (use units for calc!) */
-    --cell-spacing: 0px;
+    --cell-spacing: 4px;
     --border-width: 1px;
     --x-padding: 1rem;
 
@@ -8,7 +8,7 @@
     --font-size: 1rem;
     --table-font: monospace;
 
-    --space-color: #ddd;
+    --space-color: #fff;
     --border-color: #999;
     --table-background: #fff;
     --table-alt-background: #eee;
