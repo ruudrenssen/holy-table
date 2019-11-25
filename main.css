@@ -1,6 +1,6 @@
 :root {
-    /* variables */
-    --cell-spacing: 0px;
+    /* variables (use units for calc!) */
+    --cell-spacing: 4px;
     --border-width: 1px;
     --x-padding: 1rem;
 
@@ -8,7 +8,8 @@
     --font-size: 1rem;
     --table-font: monospace;
 
-    --space-color: #ddd;
+    --space-color: #fff;
+    --border-color: #999;
     --table-background: #fff;
     --table-alt-background: #eee;
     --table-type-color: #222;
@@ -52,7 +53,7 @@ td {
     line-height: var(--line-height);
     padding: 0 var(--x-padding);
     outline: var(--cell-spacing) solid var(--space-color);
-    border-bottom: var(--border-width) solid var(--space-color);
+    border-bottom: var(--border-width) solid var(--border-color);
     margin-bottom: var(--border-width);
     margin-top: calc(var(--border-width) * -1);
     white-space: nowrap;
@@ -99,7 +100,7 @@ table tbody tr td:hover:not(:first-child)::after {
 .sticky-footer .sticky-row .sticky-cell {
     border-top: var(--border-width) solid var(--space-color);
     border-bottom: none;
-    bottom: 0;
+    bottom: calc(var(--cell-spacing));
 }
 
 /* Sticky row positions */
