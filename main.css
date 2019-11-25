@@ -12,11 +12,11 @@
     --table-background: #fff;
     --table-alt-background: #eee;
     --table-type-color: #222;
-    --hover-color: rgba(0, 255, 255, .2);
+    --hover-color: rgba(0, 255, 255, 1);
     --target-color: rgba(255, 255, 0, 1);
-    
+
     /* calculated variables */
-    --cell-height: calc(var(--line-height) * var(--font-size) + var(--cell-spacing));
+    --cell-height: calc(var(--line-height) * var(--font-size) + var(--cell-spacing) + var(--border-width));
 }
 
 * {
@@ -43,6 +43,7 @@ table {
     font-size: var(--font-size);
     width: 100%;
     overflow: hidden;
+    color: var(--table-type-color);
 }
 
 th,
@@ -54,73 +55,12 @@ td {
     border-bottom: var(--border-width) solid var(--space-color);
     margin-bottom: var(--border-width);
     margin-top: calc(var(--border-width) * -1);
-}
-
-th:hover:not(:first-child)::after,
-td:hover:not(:first-child)::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -100vh;
-    bottom: -100vh;
-    z-index: 2;
-    background-color: var(--hover-color);
-    pointer-events: none;
+    white-space: nowrap;
 }
 
 tfoot td,
 th {
-    color: var(--table-type-color);
     background-color: var(--table-background);
-}
-
-/* Sticky header and footer */
-tfoot tr th,
-tfoot tr td,
-thead tr th,
-tbody tr th {
-    position: sticky;
-    z-index: 1;
-    white-space: nowrap;
-}
-
-tfoot tr th,
-tfoot tr td {
-    border-top: var(--border-width) solid var(--space-color);
-    border-bottom: none;
-    bottom: 0;
-}
-
-/* Sticky row positions */
-thead tr:nth-child(1) th {
-    top: calc(0 * var(--cell-height) + 0 * var(--border-width));
-}
-
-thead tr:nth-child(2) th {
-    top: calc(1 * var(--cell-height) + 1 * var(--border-width));
-}
-
-thead tr:nth-child(3) th {
-    top: calc(2 * var(--cell-height) + 2 * var(--border-width));
-}
-
-thead tr:nth-child(4) th {
-    top: calc(3 * var(--cell-height) + 3 * var(--border-width));
-}
-
-/* sticky first columns */
-tbody tr th:first-child {
-    position: sticky;
-    left: 0;
-    z-index: 1;
-}
-
-/* Sticky top-left cell */
-thead tr th:first-child,
-tfoot tr th:first-child {
-    z-index: 2;
-    left: 0;
 }
 
 /* Highlight target */
@@ -131,9 +71,64 @@ tbody tr:target th
 }
 
 /* Highlights on hover */
-table tbody tr:hover th, 
-table tbody tr:hover td {
+table tbody tr:hover th:not(:target),
+table tbody tr:hover td:not(:target) {
     background-color: var(--hover-color);
+}
+
+table tbody tr th:hover:not(:first-child)::after,
+table tbody tr td:hover:not(:first-child)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -100vh;
+    bottom: -100vh;
+    z-index: 1;
+    background-color: var(--hover-color);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+}
+
+/* Sticky rows */
+.sticky-row .sticky-cell {
+    position: sticky;
+    z-index: 1;
+}
+
+.sticky-footer .sticky-row .sticky-cell {
+    border-top: var(--border-width) solid var(--space-color);
+    border-bottom: none;
+    bottom: 0;
+}
+
+/* Sticky row positions */
+.sticky-header .sticky-row:nth-child(1) .sticky-cell {
+    top: calc(0 * var(--cell-height));
+}
+
+.sticky-header .sticky-row:nth-child(2) .sticky-cell {
+    top: calc(1 * var(--cell-height));
+}
+
+.sticky-header .sticky-row:nth-child(3) .sticky-cell {
+    top: calc(2 * var(--cell-height));
+}
+
+.sticky-header .sticky-row:nth-child(4) .sticky-cell {
+    top: calc(3 * var(--cell-height));
+}
+
+/* Sticky column */
+.sticky-column {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+}
+
+/* Sticky shared cell */
+.sticky-row .sticky-column.sticky-cell {
+    z-index: 3;
 }
 
 /* Overflow container */
