@@ -1,6 +1,6 @@
 :root {
     /* variables (use units for calc!) */
-    --cell-spacing: 0;
+    --cell-spacing: 0px;
     --border-width: 1px;
     --x-padding: 1rem;
 
@@ -8,9 +8,9 @@
     --font-size: 1rem;
     --table-font: monospace;
 
-    --space-color: #f00;
-    --border-color: #999;
+    --border-color: #bbb;
     --table-background: #fff;
+    --space-color: var(--table-background);
     --table-alt-background: #eee;
     --table-type-color: #222;
     --hover-color: rgba(0, 255, 255, 1);
@@ -54,14 +54,17 @@ td {
     padding: 0 var(--x-padding);
     outline: var(--cell-spacing) solid var(--space-color);
     border-bottom: var(--border-width) solid var(--border-color);
-    margin-bottom: var(--border-width);
-    margin-top: calc(var(--border-width) * -1);
     white-space: nowrap;
 }
 
 tfoot td,
 th {
     background-color: var(--table-background);
+}
+
+tbody tr:last-child th,
+tbody tr:last-child td {
+    border-bottom: none;
 }
 
 /* Highlight target */
@@ -72,8 +75,8 @@ tbody tr:target th
 }
 
 /* Highlights on hover */
-table tbody tr:hover th:not(:target),
-table tbody tr:hover td:not(:target) {
+table tbody tr:not(:target):hover th:not(:target),
+table tbody tr:not(:target):hover td:not(:target) {
     background-color: var(--hover-color);
 }
 
@@ -91,19 +94,21 @@ table tbody tr td:hover:not(:first-child)::after {
     pointer-events: none;
 }
 
-/* Sticky rows */
-.sticky-row .sticky-cell {
+/* Sticky cells */
+.sticky-cell {
     position: sticky;
+}
+
+.sticky-row .sticky-cell {
     z-index: 1;
 }
 
 .sticky-footer .sticky-row .sticky-cell {
-    border-top: var(--border-width) solid var(--space-color);
+    border-top: var(--border-width) solid var(--border-color);
     border-bottom: none;
-    bottom: calc(var(--cell-spacing));
+    bottom: 0;
 }
 
-/* Sticky row positions */
 .sticky-header .sticky-row:nth-child(1) .sticky-cell {
     top: calc(0 * var(--cell-height));
 }
@@ -120,14 +125,11 @@ table tbody tr td:hover:not(:first-child)::after {
     top: calc(3 * var(--cell-height));
 }
 
-/* Sticky column */
 .sticky-column {
-    position: sticky;
     left: 0;
     z-index: 2;
 }
 
-/* Sticky shared cell */
 .sticky-row .sticky-column.sticky-cell {
     z-index: 3;
 }
