@@ -17,7 +17,7 @@
     --target-color: rgba(255, 255, 0, 1);
 
     /* calculated variables */
-    --cell-height: calc(var(--line-height) * var(--font-size) + var(--cell-spacing) + var(--border-width));
+    --cell-height: calc((var(--line-height) * var(--font-size)) + var(--cell-spacing) + var(--border-width));
 }
 
 * {
@@ -53,13 +53,14 @@ td {
     line-height: var(--line-height);
     padding: 0 var(--x-padding);
     outline: var(--cell-spacing) solid var(--space-color);
-    border-bottom: var(--border-width) solid var(--border-color);
+    border-bottom: var(--border-width) dotted var(--border-color);
     white-space: nowrap;
 }
 
 tfoot td,
 th {
     background-color: var(--table-background);
+    border-right: var(--border-width) solid var(--border-color);
 }
 
 tbody tr:last-child th,
@@ -140,4 +141,27 @@ table tbody tr td:hover:not(:first-child)::after {
 
     /* Add padding so the thead does not overlap the first rows when scrolled */
     scroll-padding: 50%;
+}
+
+/* Esthetics */
+.table-header-row:first-child .column:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: calc(-1 * var(--border-width));
+    top: 0;
+    height: 100vh;
+    pointer-events: none;
+    border-right: var(--border-width) solid var(--border-color);
+}
+
+.table-header-row:last-child .column:not(:first-child)::after {
+    content: "";
+    position: absolute;
+    left: calc(-1 * var(--border-width));
+    right: 0;
+    top: 0;
+    height: 100vh;
+    pointer-events: none;
+    border-left: var(--border-width) dotted var(--border-color);
 }
