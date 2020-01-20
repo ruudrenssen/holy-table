@@ -1,12 +1,4 @@
-import { generateElement } from './factory.mjs';
+import Table from './table.mjs';
 
-const table = generateElement('table');
-const thead = generateElement('thead');
-const tfoot = generateElement('tfoot');
-const tbody = generateElement('tbody');
-
-table.appendChild(thead);
-table.appendChild(tfoot);
-table.appendChild(tbody);
-
-document.body.appendChild(table);
+let table = new Table();
+document.body.appendChild(table.element);
