@@ -12,11 +12,11 @@ function generateElement(elementName, classList, content) {
 	return element;
 }
 
-function randomDecimal() {
+function randomDouble(digits = 10) {
 	let value = Math.random();
-	let digits = Math.trunc(Math.random() * 10) + 1;
+	let digitCount = Math.trunc(Math.random() * digits) + 1;
 
-	return (value * Math.pow(10, digits)).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+	return (value * Math.pow(10, digitCount)).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
 }
 
 function randomIsin() {
@@ -30,6 +30,6 @@ function randomIsin() {
 
 export {
 	generateElement,
-	randomDecimal,
+	randomDouble,
 	randomIsin
 };

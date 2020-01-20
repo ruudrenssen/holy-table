@@ -1,5 +1,5 @@
 import { generateElement } from './factory.mjs';
-import { randomDecimal } from './factory.mjs';
+import { randomDouble } from './factory.mjs';
 import { randomIsin } from './factory.mjs';
 
 class Table {
@@ -15,6 +15,7 @@ class Table {
 
 		this._element = tableEl;
 
+		console.log(randomDouble());
 		console.log(randomIsin());
 	}
 
