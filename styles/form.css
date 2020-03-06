@@ -1,0 +1,12 @@
+label {
+	display: block;
+}
+
+input {
+	border: 1px solid var(--color-muted);
+}
+
+input[type="number"] {
+	text-align: right;
+	font-family: var(--font-number);
+}

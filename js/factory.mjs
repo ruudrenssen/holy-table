@@ -15,8 +15,13 @@ function generateElement(elementName, classList, content) {
 function randomDouble(digits = 10) {
 	let value = Math.random();
 	let digitCount = Math.trunc(Math.random() * digits) + 1;
+	return new Intl.NumberFormat(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(value * Math.pow(10, digitCount));
+}
 
-	return (value * Math.pow(10, digitCount)).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+function randomPercentage() {
+	let value = Math.random();
+	let digitCount = 2;
+	return `${(new Intl.NumberFormat(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}).format(value * Math.pow(10, digitCount)))}%`;
 }
 
 function randomIsin() {
@@ -28,8 +33,57 @@ function randomIsin() {
 	return `${isinCountry}${isinNumber}`;
 }
 
+function randomString(length = 3) {
+	let value = '';
+	const syllables = ['plu', 'ko', 'ven', 'dus', 'di', 'ma', 'za', 'fi', 'vak', 'op', 'tra', 'es', 'en', 'zat', 'ven', 'ro', 'tar', 'lo', 'wig', 'tu', 'sup', 'ip', 'ga', 'zon', 'fyr', 'ap', 'zet', 'pa', 'wa', 'com', 'ny', 'set', 'ting', 'stor', 'hom', 'voi', 'ce', 'pre', 'vue', 'bas', 'spel', 'bas'];
+	while (length > 0) {
+		value += syllables[Math.round(Math.random() * syllables.length)]
+		length--;
+	}
+	return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function dummyTableData(rows = 5, columns = 3, headerRows = 1) {
+	const dataTypes = [randomIsin, randomDouble, randomPercentage, randomString, randomDouble, randomDouble, randomDouble, randomPercentage, randomString, randomDouble, randomDouble, randomDouble, randomPercentage, randomString, randomDouble, randomDouble, randomDouble, randomPercentage, randomString, randomDouble, randomDouble];
+	let caption = randomString();
+	let thead = new Array(headerRows);
+	let tfoot = new Array(columns);
+	let tbody = [new Array(rows)];
+
+	for (let rowIndex = 0; rowIndex < headerRows; rowIndex++) {
+		let row = new Array(columns);
+		for (let columnIndex = 0; columnIndex < columns; columnIndex++) {
+			row[columnIndex] = 'Head';
+		}
+		thead.push(row);
+	}
+
+
+	for (let columnIndex = 0; columnIndex < columns; columnIndex++) {
+		tfoot[columnIndex] = 'Foot';
+	}
+
+	for(let rowIndex = 0; rowIndex < rows; rowIndex++) {
+		let row = new Array(columns);
+		for (let columnIndex = 0; columnIndex < columns; columnIndex++) {
+			row[columnIndex] = dataTypes[columnIndex]();
+		}
+		tbody[rowIndex] = row;
+	}
+
+	return {
+		caption: caption,
+		thead: thead,
+		tfoot: tfoot,
+		tbody: tbody
+	}
+}
+
 export {
 	generateElement,
 	randomDouble,
-	randomIsin
+	randomIsin,
+	randomPercentage,
+	randomString,
+	dummyTableData
 };

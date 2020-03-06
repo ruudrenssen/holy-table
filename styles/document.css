@@ -1,0 +1,43 @@
+html {
+	--base-size: 				1rem;
+	--font-heading: 			Georgia, 'Times New Roman', Times, serif;
+	--font-body: 				Arial, Helvetica, sans-serif;
+	--font-number: 				monospace;
+	--color-background:			#eee;
+	--color-foreground:			#333;
+	--color-muted:				#999;
+	--color-ix:					#e91051;
+
+	height: 100%;
+}
+
+body {
+	--font-size-base: var(--base-size);
+	--font-size-s: calc(var(--font-size-base) / 1.6);
+	--font-size-m: var(--font-size-base);
+	--font-size-l: calc(var(--font-size-base) * 1.6);
+	--font-size-xl: calc(var(--font-size-base) * 2.6);
+
+	font-size: var(--font-size-m);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--font-heading);
+	font-weight: bold;
+}
+
+h1 {
+	font-size: var(--font-size-xl);
+}
+
+h2 {
+	font-size: var(--font-size-l);
+}
+
+h3 {
+	font-size: var(--font-size-m);
+}
+
+h4, h5, h6 {
+	font-size: var(--font-size-s);
+}

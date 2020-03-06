@@ -1,0 +1,12 @@
+body {
+	display: grid;
+	height: 100%;
+	width: 100%;
+	grid-template-columns: max-content 1fr;
+	grid-template-rows: 1fr;
+}
+
+main {
+	overflow: auto;
+	margin: calc(var(--base-size) * 2);
+}

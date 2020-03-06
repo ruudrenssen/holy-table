@@ -8,12 +8,49 @@
     <link rel='stylesheet' type='text/css' media='screen' href='./styles/main.css'>
 </head>
 <body>
-    <main>
-        <h1>Advanced table</h1>
-    </main>
     <aside>
         <h2>Controls</h2>
+        <form>
+            <label>
+                <input type="checkbox">
+                Sticky table header
+            </label>
+
+            <label>
+                <input type="checkbox">
+                Sticky first column
+            </label>
+
+            <label>
+                <input type="checkbox">
+                Sticky table footer
+            </label>
+
+            <label>
+                Highlight row: <input type="number">
+            </label>
+
+            <label>
+                Highlight column: <input type="number">
+            </label>
+
+            <label>
+                Highlight cell <input type="number" placeholder="row"> <input type="number" placeholder="col">
+            </label>
+        </form>
+        <h2>Features / to-do:</h2>
+        <ul>
+            <li>Sticky table header</li>
+            <li>Sticky first column</li>
+            <li>Sticky table footer</li>
+            <li>Highlight cell and center it on the screen</li>
+            <li>Highlight row and center it on the screen</li>
+            <li>Highlight column and center it on the screen</li>
+            <li>Paging (show as many rows as fit on the screen)</li>
+        </ul>
     </aside>
+    <main>
+    </main>
     <script type="module" src='./js/main.mjs'></script>
 </body>
 </html>

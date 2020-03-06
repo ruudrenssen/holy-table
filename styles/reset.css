@@ -6,8 +6,9 @@
 	line-height: inherit;
 	border: none;
 	outline: none;
+	font-family: sans-serif;
 }
 
-html {
-	font-family: sans-serif;
+li {
+	margin-left: var(--base-size);
 }

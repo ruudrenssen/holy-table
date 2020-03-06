@@ -1,0 +1,17 @@
+table {
+
+}
+
+caption {
+	font-size: var(--font-size-l);
+	font-weight: bold;
+	font-family: var(--font-heading);
+}
+
+th {
+	font-weight: bold;
+}
+
+tbody th {
+	text-align: left;
+}
