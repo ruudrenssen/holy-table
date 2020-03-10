@@ -1,12 +1,20 @@
 body {
 	display: grid;
-	height: 100%;
-	width: 100%;
-	grid-template-columns: max-content 1fr;
+	grid-template-columns: 1fr max-content;
 	grid-template-rows: 1fr;
+	gap: var(--size-xl);
+	padding: var(--size-xl);
+
+	height: 100%;
 }
 
 main {
 	overflow: auto;
-	margin: calc(var(--base-size) * 2);
+}
+
+aside {
+	display: grid;
+	grid-auto-columns: 100%;
+	grid-auto-rows: min-content;
+	gap: var(--size-l);
 }

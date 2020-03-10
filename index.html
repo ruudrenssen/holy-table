@@ -8,49 +8,86 @@
     <link rel='stylesheet' type='text/css' media='screen' href='./styles/main.css'>
 </head>
 <body>
+    <main>
+    </main>
     <aside>
         <h2>Controls</h2>
         <form>
-            <label>
-                <input type="checkbox">
-                Sticky table header
-            </label>
+            <fieldset>
+                <div>
+                    <legend>Make stuff</legend>
+                </div>
+                <label>
+                    Header rows:
+                    <input type="number" data-control="set-header-rows">
+                </label>
+                <label>
+                    Rows:
+                    <input type="number" data-control="set-rows">
+                </label>
+                <label>
+                    Columns:
+                    <input type="number" data-control="set-columns">
+                </label>
+                <label>
+                    <input type="checkbox" data-control="toggle-footer">
+                    Footer row
+                </label>
+            </fieldset>
+            <fieldset id="sticky-table-controls">
+                <div>
+                    <legend>Make stuff sticky</legend>
+                </div>
 
-            <label>
-                <input type="checkbox">
-                Sticky first column
-            </label>
+                <label>
+                    <input type="checkbox" data-control="toggle-sticky-table">
+                    Sticky table
+                </label>
 
-            <label>
-                <input type="checkbox">
-                Sticky table footer
-            </label>
+                <label>
+                    <input type="checkbox" data-control="toggle-sticky-header">
+                    Sticky table header
+                </label>
 
-            <label>
-                Highlight row: <input type="number">
-            </label>
+                <label>
+                    <input type="checkbox" data-control="toggle-sticky-first-column">
+                    Sticky first column
+                </label>
 
-            <label>
-                Highlight column: <input type="number">
-            </label>
+                <label>
+                    <input type="checkbox" data-control="toggle-sticky-footer">
+                    Sticky table footer
+                </label>
+            </fieldset>
+            <fieldset>
+                <div>
+                    <legend>Make stuff highlight</legend>
+                </div>
+                <label>
+                    Highlight row: <input type="number" data-control="highlight-row">
+                </label>
 
-            <label>
-                Highlight cell <input type="number" placeholder="row"> <input type="number" placeholder="col">
-            </label>
+                <label>
+                    Highlight column: <input type="number" data-control="highlight-column">
+                </label>
+
+                <label>
+                    Highlight cell <input type="number" placeholder="row" data-control="highlight-cell"> <input type="number" placeholder="col" data-control="highlight-cell">
+                </label>
+            </fieldset>
         </form>
-        <h2>Features / to-do:</h2>
-        <ul>
-            <li>Sticky table header</li>
-            <li>Sticky first column</li>
-            <li>Sticky table footer</li>
-            <li>Highlight cell and center it on the screen</li>
-            <li>Highlight row and center it on the screen</li>
-            <li>Highlight column and center it on the screen</li>
-            <li>Paging (show as many rows as fit on the screen)</li>
-        </ul>
+        <!--
+            todo:
+            Sticky table header
+            Sticky first column
+            Sticky table footer
+            Highlight cell and center it on the screen
+            Highlight row and center it on the screen
+            Highlight column and center it on the screen
+            Paging (show as many rows as fits on screen)
+            Variable row and col count
+        -->
     </aside>
-    <main>
-    </main>
     <script type="module" src='./js/main.mjs'></script>
 </body>
 </html>

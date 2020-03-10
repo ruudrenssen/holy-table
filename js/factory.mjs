@@ -44,6 +44,7 @@ function randomString(length = 3) {
 }
 
 function dummyTableData(rows = 5, columns = 3, headerRows = 1) {
+	// todo: loop through next array
 	const dataTypes = [randomIsin, randomDouble, randomPercentage, randomString, randomDouble, randomDouble, randomDouble, randomPercentage, randomString, randomDouble, randomDouble, randomDouble, randomPercentage, randomString, randomDouble, randomDouble, randomDouble, randomPercentage, randomString, randomDouble, randomDouble];
 	let caption = randomString();
 	let thead = new Array(headerRows);
@@ -55,7 +56,7 @@ function dummyTableData(rows = 5, columns = 3, headerRows = 1) {
 		for (let columnIndex = 0; columnIndex < columns; columnIndex++) {
 			row[columnIndex] = 'Head';
 		}
-		thead.push(row);
+		thead[rowIndex] = row;
 	}
 
 

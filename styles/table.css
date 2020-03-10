@@ -1,15 +1,31 @@
 table {
-
+	border-collapse: separate;
+	border-spacing: var(--border-size);
+	background-color: var(--color-foreground);
 }
 
 caption {
+	padding: var(--size-xs);
+
 	font-size: var(--font-size-l);
 	font-weight: bold;
 	font-family: var(--font-heading);
+
+	background-color: var(--color-foreground);
+	color: var(--color-background);
+}
+
+th, td {
+	padding: var(--size-xs);
+	background-color: var(--color-background);
 }
 
 th {
 	font-weight: bold;
+}
+
+td {
+	font-family: var(--font-table);
 }
 
 tbody th {
