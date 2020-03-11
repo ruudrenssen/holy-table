@@ -1,23 +1,22 @@
 table {
+	--line-height: 2;
+	--row-height: calc(var(--line-height) * var(--font-size-base) + var(--border-size));
 	border-collapse: separate;
 	border-spacing: var(--border-size);
 	background-color: var(--color-foreground);
+	caption-side: bottom;
+	line-height: var(--line-height);
 }
 
 caption {
-	padding: var(--size-xs);
-
-	font-size: var(--font-size-l);
-	font-weight: bold;
-	font-family: var(--font-heading);
-
-	background-color: var(--color-foreground);
-	color: var(--color-background);
+	background: red;
+	text-align: left;
 }
 
 th, td {
-	padding: var(--size-xs);
+	padding: 0 var(--size-xs);
 	background-color: var(--color-background);
+	outline: var(--border-size) solid var(--color-foreground);
 }
 
 th {
@@ -30,4 +29,60 @@ td {
 
 tbody th {
 	text-align: left;
+}
+
+/* sticky behavior */
+.table-container {
+	overflow: auto;
+}
+
+table.sticky-table.sticky-first-column tr th[scope='row'] {
+	position: sticky;
+	left: var(--border-size);
+	z-index: 1;
+}
+
+table.sticky-table.sticky-first-column thead tr th[scope='col'] {
+	position: sticky;
+	z-index: 2;
+}
+
+table.sticky-table.sticky-header thead tr:nth-child(1) th[scope='col'] {
+	top: var(--border-size);
+}
+
+table.sticky-table.sticky-header thead tr:nth-child(2) th[scope='col'] {
+	top: calc(1 * var(--row-height) + var(--border-size))
+}
+
+table.sticky-table.sticky-header thead tr:nth-child(3) th[scope='col'] {
+	top: calc(2 * var(--row-height) + var(--border-size))
+}
+
+table.sticky-table.sticky-header thead tr:nth-child(4) th[scope='col'] {
+	top: calc(3 * var(--row-height) + var(--border-size))
+}
+
+table.sticky-table.sticky-header thead tr:nth-child(5) th[scope='col'] {
+	top: calc(4 * var(--row-height) + var(--border-size))
+}
+
+table.sticky-table.sticky-first-column.sticky-header thead tr:first-child th:first-child {
+	top: var(--border-size);
+	left: var(--border-size);
+	z-index: 3;
+}
+
+table.sticky-table.sticky-footer tfoot tr th[scope='row'],
+table.sticky-table.sticky-footer tfoot tr td {
+	position: sticky;
+	bottom: var(--border-size);
+}
+
+table.sticky-table.sticky-footer tfoot tr th[scope='row']{
+	z-index: 2;
+}
+
+table.sticky-table.sticky-footer tfoot tr td {
+	z-index: 1;
 }

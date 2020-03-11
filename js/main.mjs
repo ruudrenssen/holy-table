@@ -5,4 +5,4 @@ let dummyTable = new DummyTable(100, 13, 3);
 let tableElement = dummyTable.getTable();
 let stickyTable = new StickyTable(tableElement, document.getElementById('sticky-table-controls'));
 
-document.querySelector('main').appendChild(tableElement);
+document.getElementById('table-module').appendChild(tableElement);

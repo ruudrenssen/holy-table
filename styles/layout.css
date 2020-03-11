@@ -6,10 +6,7 @@ body {
 	padding: var(--size-xl);
 
 	height: 100%;
-}
-
-main {
-	overflow: auto;
+	width: 100%;
 }
 
 aside {
@@ -17,4 +14,11 @@ aside {
 	grid-auto-columns: 100%;
 	grid-auto-rows: min-content;
 	gap: var(--size-l);
+}
+
+.grid {
+	display: grid;
+	grid-auto-columns: 100%;
+	grid-auto-rows: min-content;
+	gap: var(--size-s);
 }

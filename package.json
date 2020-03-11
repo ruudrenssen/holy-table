@@ -1,0 +1,19 @@
+{
+  "name": "holy-table",
+  "version": "1.0.0",
+  "description": "A responsive table with sticky cells and the possibility to highlight a row, column or cells",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruudrenssen/holy-table.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruudrenssen/holy-table/issues"
+  },
+  "homepage": "https://github.com/ruudrenssen/holy-table#readme"
+}

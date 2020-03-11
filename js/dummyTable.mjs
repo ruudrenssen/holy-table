@@ -26,15 +26,18 @@ class DummyTable {
 
 		if(data.tfoot) {
 			tfoot = generateElement('tfoot');
+			const tr = generateElement('tr');
 			data.tfoot.forEach((cell, index) => {
 				if (index === 0) {
 					const th = generateElement('th', undefined, 'Total')
-					tfoot.appendChild(th);
+					th.setAttribute('scope', 'row');
+					tr.appendChild(th);
 				} else {
 					const td = generateElement('td', undefined, cell);
-					tfoot.appendChild(td);
+					tr.appendChild(td);
 				}
-			})
+			});
+			tfoot.appendChild(tr);
 		}
 
 		if(data.tbody.length) {
@@ -42,14 +45,14 @@ class DummyTable {
 			data.tbody.forEach(row => {
 				const tr = generateElement('tr');
 				row.forEach((cell, index) => {
-					let element;
 					if (index === 0) {
-						element = 'th';
+						const th = generateElement('th', undefined, cell);
+						th.setAttribute('scope', 'row');
+						tr.appendChild(th);
 					} else {
-						element = 'td';
+						const td = generateElement('td', undefined, cell);
+						tr.appendChild(td);
 					}
-					const td = generateElement(element, undefined, cell);
-					tr.appendChild(td);
 				});
 				tbody.appendChild(tr);
 			});
@@ -62,6 +65,11 @@ class DummyTable {
 		this._element.appendChild(tbody);
 	}
 
+	generateCols(cols, colgroup = 3) {
+		const singleCount = cols % colgroup;
+		const multipleCount = Math.floor(cols / colgroup);
+	}
+
 	generateHeader(data, element = null) {
 		const rowCount = data.length;
 		if(rowCount === 0) {
@@ -71,10 +79,12 @@ class DummyTable {
 				const trFirst = generateElement('tr');
 				const thFirst = generateElement('th', undefined, 'entity');
 				thFirst.setAttribute('rowSpan', rowCount + 1);
+				thFirst.setAttribute('scope', 'col');
 				trFirst.appendChild(thFirst);
 
 				const thSecond = generateElement('th', undefined, 'properties');
 				thSecond.setAttribute('colSpan', data[0].length - 1);
+				thSecond.setAttribute('scope', 'col');
 				trFirst.appendChild(thSecond);
 
 				data.forEach(row => {
@@ -99,11 +109,13 @@ class DummyTable {
 				let th = undefined;
 				for(let i = 0; i < singleCount; i++) {
 					th = generateElement('th', undefined, `${rowCount}-${i + 1}`);
+					th.setAttribute('scope','col');
 					tr.appendChild(th);
 				}
 				for(let i = 0; i < multipleCount; i++) {
 					th = generateElement('th', undefined, `${rowCount}-${i + 1}`);
 					th.setAttribute('colspan', rowCount);
+					th.setAttribute('scope','col');
 					tr.appendChild(th);
 				}
 			}
