@@ -15,13 +15,15 @@ class DummyTable {
 	populate (data) {
 		this._element.innerHTML = "";
 
-		let caption = null;
+		let captionContainer, captionContent;
 		let thead = this.generateHeader([...data.thead]);
 		let tfoot = null;
 		let tbody = null;
 
 		if(data.caption) {
-			caption = generateElement('caption', undefined, data.caption);
+			captionContainer = generateElement('caption', undefined);
+			captionContent = generateElement('span', undefined, 'Caption');
+			captionContainer.appendChild(captionContent);
 		}
 
 		if(data.tfoot) {
@@ -59,7 +61,7 @@ class DummyTable {
 
 		}
 
-		this._element.appendChild(caption);
+		this._element.appendChild(captionContainer);
 		this._element.appendChild(thead);
 		this._element.appendChild(tfoot);
 		this._element.appendChild(tbody);

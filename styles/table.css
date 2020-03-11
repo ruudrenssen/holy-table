@@ -1,6 +1,8 @@
 table {
 	--line-height: 2;
 	--row-height: calc(var(--line-height) * var(--font-size-base) + var(--border-size));
+
+	position: relative;
 	border-collapse: separate;
 	border-spacing: var(--border-size);
 	background-color: var(--color-foreground);
@@ -9,8 +11,15 @@ table {
 }
 
 caption {
-	background: red;
+	position: relative;
 	text-align: left;
+	width: 100%;
+}
+
+caption span {
+	position: sticky;
+	bottom: 0;
+	left: 0;
 }
 
 th, td {
