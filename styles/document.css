@@ -28,6 +28,7 @@ body {
 	--border-size: var(--base-raster-size);
 
 	font-size: var(--font-size-m);
+	background: var(--color-background);
 }
 
 h1, h2, h3, h4, h5, h6 {

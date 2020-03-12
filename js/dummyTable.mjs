@@ -15,15 +15,13 @@ class DummyTable {
 	populate (data) {
 		this._element.innerHTML = "";
 
-		let captionContainer, captionContent;
-		let thead = this.generateHeader([...data.thead]);
-		let tfoot = null;
-		let tbody = null;
+		let caption, captionContent, thead, tfoot, tbody;
+		thead = this.generateHeader([...data.thead]);
 
 		if(data.caption) {
-			captionContainer = generateElement('caption', undefined);
+			caption = generateElement('caption', undefined);
 			captionContent = generateElement('span', undefined, 'Caption');
-			captionContainer.appendChild(captionContent);
+			caption.appendChild(captionContent);
 		}
 
 		if(data.tfoot) {
@@ -61,15 +59,36 @@ class DummyTable {
 
 		}
 
-		this._element.appendChild(captionContainer);
+		this._element.appendChild(caption);
+		this.generateCols(data.tbody[0].length).forEach(colgroup => {
+			this._element.appendChild(colgroup);
+		})
 		this._element.appendChild(thead);
 		this._element.appendChild(tfoot);
 		this._element.appendChild(tbody);
 	}
 
 	generateCols(cols, colgroup = 3) {
-		const singleCount = cols % colgroup;
-		const multipleCount = Math.floor(cols / colgroup);
+		const firstGroup = cols % colgroup;
+		const nextGroups = Math.floor(cols / colgroup);
+		let colgroups = [];
+
+		const colgroupElement = generateElement('colgroup');
+		for(let i = 0; i < firstGroup; i++) {
+			colgroupElement.appendChild(generateElement('col'));
+		}
+		colgroups.push(colgroupElement);
+
+		for(let i=0; i < nextGroups; i++) {
+			const nextColgroup = generateElement('colgroup');
+			for (let j = 0; j < colgroup; j++) {
+				const col = generateElement('col');
+				nextColgroup.appendChild(col);
+			}
+			colgroups.push(nextColgroup);
+		}
+
+		return colgroups;
 	}
 
 	generateHeader(data, element = null) {

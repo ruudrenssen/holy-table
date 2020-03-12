@@ -11,13 +11,11 @@ table {
 }
 
 caption {
-	position: relative;
 	text-align: left;
 }
 
 caption span {
 	position: sticky;
-	bottom: 0;
 	left: 0;
 }
 
@@ -60,19 +58,19 @@ table.sticky-table.sticky-header thead tr:nth-child(1) th[scope='col'] {
 }
 
 table.sticky-table.sticky-header thead tr:nth-child(2) th[scope='col'] {
-	top: calc(1 * var(--row-height) + var(--border-size))
+	top: calc(1 * var(--row-height) + var(--border-size));
 }
 
 table.sticky-table.sticky-header thead tr:nth-child(3) th[scope='col'] {
-	top: calc(2 * var(--row-height) + var(--border-size))
+	top: calc(2 * var(--row-height) + var(--border-size));
 }
 
 table.sticky-table.sticky-header thead tr:nth-child(4) th[scope='col'] {
-	top: calc(3 * var(--row-height) + var(--border-size))
+	top: calc(3 * var(--row-height) + var(--border-size));
 }
 
 table.sticky-table.sticky-header thead tr:nth-child(5) th[scope='col'] {
-	top: calc(4 * var(--row-height) + var(--border-size))
+	top: calc(4 * var(--row-height) + var(--border-size));
 }
 
 table.sticky-table.sticky-first-column.sticky-header thead tr:first-child th:first-child {
